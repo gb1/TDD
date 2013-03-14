@@ -15,6 +15,8 @@ public class _SavingsAccount {
 		assertEquals("after withdraw", 50, account.balance());
 		account.deposit(100);
 		assertEquals("another", 150, account.balance());
+		account.deposit(100);
+		assertEquals("another", 250, account.balance());
 	}
 	
 	@Test
