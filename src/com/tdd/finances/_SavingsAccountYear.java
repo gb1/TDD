@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
-public class _SavingsAccount {
+public class _SavingsAccountYear {
 
 	@Test
 	public void balanceAndWithdrawalTest() {
-		SavingsAccount account = new SavingsAccount();
+		SavingsAccountYear account = new SavingsAccountYear();
 		account.deposit(100);
 		assertEquals("after deposit", 100, account.balance());
 		account.withdraw(50);
@@ -21,9 +21,23 @@ public class _SavingsAccount {
 	
 	@Test
 	public void negativeBalance(){
-		SavingsAccount account = new SavingsAccount();
+		SavingsAccountYear account = new SavingsAccountYear();
 		account.deposit(-75);
 		assertEquals("overdrawn", -75, account.balance());
+	}
+	
+	@Test
+	public void nextYear(){
+		SavingsAccountYear account = new SavingsAccountYear();
+		account.deposit(10000);
+		SavingsAccountYear nextYear = account.nextYear(10);
+		assertEquals(11000, nextYear.balance());
+	}
+	
+	@Test
+	public void endingBalance(){
+		SavingsAccountYear account = new SavingsAccountYear(10000, 10);
+		assertEquals(11000, account.endingBalance());
 	}
 
 }
