@@ -2,38 +2,42 @@ package com.tdd.finances;
 
 public class SavingsAccountYear {
 
-	private int balance;
+	private int startingBalance;
 	private int interestRate;
+	private int capitalGainsAmount;
 
 	public SavingsAccountYear(int startingBalance, int interestRate) {
-		this.balance = startingBalance;
+		this.startingBalance = startingBalance;
 		this.interestRate = interestRate;
 	}
 
-	public SavingsAccountYear() {
-		// TODO Auto-generated constructor stub
+	public SavingsAccountYear(int startingBalance, int capitalGainsAmount, int interestRate) {
+		this.startingBalance = startingBalance;
+		this.interestRate = interestRate;
+		this.capitalGainsAmount = capitalGainsAmount;
 	}
-
-	public void deposit(int amount) {
-		balance += amount;
-	}
-
-	public int balance() {
-		return balance;
-	}
-
-	public void withdraw(int amount) {
-		balance -= amount;
-	}
-
-	public SavingsAccountYear nextYear(int interestRate) {
-		SavingsAccountYear result = new SavingsAccountYear();
-		result.deposit(this.balance += this.balance * interestRate / 100);
-		return result;
+	
+	public int startingBalance() {
+		return startingBalance;
 	}
 
 	public int endingBalance() {
-		return (this.balance += this.balance * interestRate / 100);
+		return startingBalance + (startingBalance * this.interestRate / 100);
+	}
+
+	public int interestRate() {
+		return this.interestRate;
+	}
+
+	public SavingsAccountYear nextYear() {
+		return new SavingsAccountYear(this.endingBalance(), this.interestRate);
+	}
+
+	public void withdraw(int withdrawal) {
+		startingBalance -= withdrawal;		
+	}
+	public int ten(){
+		return 10;
 	}
 
 }
